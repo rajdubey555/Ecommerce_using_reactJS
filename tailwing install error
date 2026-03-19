@@ -1,0 +1,5 @@
+npm uninstall vite
+npm install vite@7
+npm uninstall @vitejs/plugin-react
+npm install @vitejs/plugin-react@4
+npm install tailwindcss @tailwindcss/vite
