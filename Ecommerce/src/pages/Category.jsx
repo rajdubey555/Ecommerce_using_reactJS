@@ -6,7 +6,11 @@ import { Navigation, Autoplay } from 'swiper/modules'
 import { useParams } from "react-router-dom";
 import 'swiper/css'
 import 'swiper/css/navigation'
+import { useDispatch } from 'react-redux'
+import { addToCart } from "../redux/features/cartSlice";
 const Category = () => {
+
+    const dispatch = useDispatch()
 
     const [productData, setProductData] = useState([])
 
@@ -26,10 +30,9 @@ const Category = () => {
         <div className='mt-5 mb-5 '>
             <div className='flex  justify-center'>
                 <h1 className='text-2xl font-bold px-5 items-center  text-gray-600 '>{name.charAt(0).toUpperCase() + name.slice(1)}</h1>
-
             </div>
             <div
-                className=" mt-1 pl-4 flex"
+                className=" mt-1 pl-4 flex flex-wrap"
             >
                 {productData.map((elem) => {
                     return <div key={elem.id}>
@@ -46,7 +49,9 @@ const Category = () => {
                                 <h3>Price: ${Math.round(elem.price)}</h3>
                                 <div className='flex gap-2 justify-center'>
                                     <button className='h-6 w-20 text-white rounded-lg text-[10px] bg-blue-800 active:scale-95' type='button'>Buy Now</button>
-                                    <button className='h-6 w-20 text-white rounded-lg text-[10px] bg-red-800 active:scale-95' type='button'>Add to Cart</button>
+                                    <button className='h-6 w-20 text-white rounded-lg text-[10px] bg-red-800 active:scale-95' type='button'
+                                    onClick={()=> dispatch(addToCart(elem))}
+                                    >Add to Cart</button>
                                 </div>
                             </div>
                         </div>
