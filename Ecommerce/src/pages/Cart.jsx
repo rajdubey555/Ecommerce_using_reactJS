@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { decQty, incQty, removeCart } from "../redux/features/cartSlice";
-
+import { showSuccess } from "../utils/toast";
 const Cart = () => {
 
     const cartItems = useSelector((state) => state.cart.cartItems)
@@ -76,7 +76,9 @@ const Cart = () => {
                                 </p>
 
                                 <button
-                                    onClick={() => dispatch(removeCart(item.id))}
+                                    onClick={() =>{ dispatch(removeCart(item.id))
+                                        showSuccess("Product Remove From the Cart")
+                                    }}
                                     className="mt-2 text-red-500 hover:underline text-sm"
                                 >
                                     Remove

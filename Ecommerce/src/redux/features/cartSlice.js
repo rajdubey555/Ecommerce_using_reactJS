@@ -19,7 +19,7 @@ export const cartSlice = createSlice({
     initialState,
     reducers: {
         addToCart: (state, action) => {
-            const item = aciotn.payload
+            const item = action.payload
 
             //check item exits or not
             const existItem = state.cartItems.find((i) => i.id === item.id)

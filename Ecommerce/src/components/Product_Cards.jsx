@@ -8,7 +8,7 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import { useDispatch, useSelector } from 'react-redux'
 import { addToCart } from "../redux/features/cartSlice";
-
+import { showSuccess } from "../utils/toast";
 
 const Product_Cards = () => {
 
@@ -58,10 +58,11 @@ const Product_Cards = () => {
                                 <h3>Price: ${Math.round(elem.price)}</h3>
                                 <div className='flex gap-2 justify-center'>
                                     <button className='h-6 w-20 text-white rounded-lg text-[10px] bg-blue-800 active:scale-95' type='button'>Buy Now</button>
-                                    <button className='h-6 w-20 text-white rounded-lg text-[10px] bg-red-800 active:scale-95' type='button' 
-                                    onClick={()=>{
-dispatch(addToCart(elem))
-                                    }}>Add to Cart</button>
+                                    <button className='h-6 w-20 text-white rounded-lg text-[10px] bg-red-800 active:scale-95' type='button'
+                                        onClick={() => {
+                                            dispatch(addToCart(elem))
+                                            showSuccess("Product added to cart 🛒");
+                                        }}>Add to Cart</button>
                                 </div>
                             </div>
                         </div>

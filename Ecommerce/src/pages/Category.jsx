@@ -8,6 +8,7 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import { useDispatch } from 'react-redux'
 import { addToCart } from "../redux/features/cartSlice";
+import { showSuccess } from "../utils/toast";
 const Category = () => {
 
     const dispatch = useDispatch()
@@ -50,15 +51,17 @@ const Category = () => {
                                 <div className='flex gap-2 justify-center'>
                                     <button className='h-6 w-20 text-white rounded-lg text-[10px] bg-blue-800 active:scale-95' type='button'>Buy Now</button>
                                     <button className='h-6 w-20 text-white rounded-lg text-[10px] bg-red-800 active:scale-95' type='button'
-                                    onClick={()=> dispatch(addToCart(elem))}
+                                        onClick={() => {dispatch(addToCart(elem))
+                                        showSuccess("Product added to cart 🛒")
+                                    }}
                                     >Add to Cart</button>
-                                </div>
                             </div>
                         </div>
                     </div>
+                    </div>
                 })}
-            </div>
         </div>
+        </div >
     )
 }
 
