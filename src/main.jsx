@@ -9,7 +9,7 @@ import 'react-loading-skeleton/dist/skeleton.css';
 
 createRoot(document.getElementById('root')).render(
   <ThemeProvider>
-    <BrowserRouter>
+    <BrowserRouter  >
       <Provider store={store}>
         <App />
       </Provider>
