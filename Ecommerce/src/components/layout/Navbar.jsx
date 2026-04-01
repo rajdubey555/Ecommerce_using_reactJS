@@ -1,6 +1,6 @@
 import React from 'react'
-import Navbar2 from './Navbar2'
-import SearchBox from './SearchBox'
+import Navbar2 from '../layout/Navbar2'
+import SearchBox from '../../components/ui/SearchBox'
 
 
 const Navbar = () => {

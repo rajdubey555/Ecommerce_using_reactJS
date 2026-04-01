@@ -1,26 +1,25 @@
-import React, {useContext } from 'react'
-import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import { Routes, Route } from "react-router-dom";
 import About from './pages/About';
 import Contact from './pages/Contact';
-import Footer from './components/Footer';
 import Category from './pages/Category';
-import Layout from './components/Layout';
+import Layout from './components/layout/Layout';
 import { ThemeContext } from './context/ThemeContext';
 import Cart from './pages/Cart';
 import { Toaster } from "react-hot-toast";
+import { useContext } from 'react';
+import ProductPage from './pages/ProductPage';
 
 const App = (props) => {
 
   const { Theme } = useContext(ThemeContext)
-      console.log(Theme);
+  console.log(Theme);
   return (
 
     <div className={Theme}>
-   
-     
-<Toaster
+
+
+      <Toaster
         position="top-right"
         toastOptions={{
           duration: 3000,
@@ -44,6 +43,8 @@ const App = (props) => {
           },
         }}
       />
+
+
       <Routes>
         <Route path='/' element={<Layout />}>
           <Route index element={<Home />} />
@@ -51,7 +52,7 @@ const App = (props) => {
           <Route path='contact' element={<Contact />} />
           <Route path='Category/:name' element={<Category />} />
           <Route path='cart' element={<Cart />} />
-
+          <Route path='ProductPage' element={<ProductPage/>}/>
         </Route>
       </Routes>
 

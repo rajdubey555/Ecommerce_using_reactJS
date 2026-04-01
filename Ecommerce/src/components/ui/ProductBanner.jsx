@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 
 import { EffectCoverflow, Pagination,Autoplay } from 'swiper/modules';
 
-const Product_Cards3 = () => {
+const ProductBanner = () => {
 
   const slider = [ {
       id: 1,
@@ -82,4 +82,4 @@ const Product_Cards3 = () => {
   );
 }
 
-export default Product_Cards3
+export default ProductBanner

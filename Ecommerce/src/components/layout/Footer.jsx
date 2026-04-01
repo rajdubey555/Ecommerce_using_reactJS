@@ -1,8 +1,8 @@
 import React from 'react'
 import { FaWhatsapp } from "react-icons/fa";
 import { IoCall } from "react-icons/io5";
-import dowPlayStore from "../assets/button/dowPlayStore.png";
-import dowAppStore from "../assets/button/dowAppStore.png";
+import dowPlayStore from "../../assets/button/dowPlayStore.png";
+import dowAppStore from "../../assets/button/dowAppStore.png";
 
 
 const Footer = () => {

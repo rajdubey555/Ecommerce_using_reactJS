@@ -1,14 +1,14 @@
 import React, { useContext } from 'react'
-import { HouseHeartIcon, ShoppingCart,CircleUserRound, Info} from 'lucide-react';
+import { HouseHeartIcon, ShoppingCart, CircleUserRound, Info } from 'lucide-react';
 import { Link } from "react-router-dom";
-import { ThemeContext } from '../context/ThemeContext';
+import { ThemeContext } from '../../context/ThemeContext';
 import { MdOutlineLightMode } from "react-icons/md";
 import { MdLightMode } from "react-icons/md";
 
 
 const Navbar2 = () => {
 
-    const {theme, toggleTheme} = useContext(ThemeContext)
+    const { theme, toggleTheme } = useContext(ThemeContext)
     return (
         <div className='flex justify-center items-center gap-5 text-xl font-bold text-gray-500'>
             <div className='flex flex-row items-center justify-center gap-1'>
@@ -42,17 +42,17 @@ const Navbar2 = () => {
             <div className='flex flex-row items-center gap-1'>
                 <button onClick={toggleTheme} className='flex items-center gap-1 justify-center hover:underline'>
                     {theme === "light" ?
-                     (<>
-                     <MdOutlineLightMode /> light
-                     
-                     
-                     </>)
-                     :
-                     (< >
-                     <MdLightMode /> Dark
-                     
-                     </>)}
-                    
+                        (<>
+                            <MdOutlineLightMode />
+
+
+                        </>)
+                        :
+                        (< >
+                            <MdLightMode />
+
+                        </>)}
+
                 </button>
             </div>
         </div>

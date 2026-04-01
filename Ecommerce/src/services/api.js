@@ -1,22 +1,50 @@
 import axios from "axios"
+//Fetch Product
+const ProductUrl ="https://dummyjson.com/products"
 
-export const singleProduct = async() => {
+export const ProductData = async(limit = 15, skip = 0) => {
     try {
-        const response = await axios.get('https://fakestoreapi.com/products?limit=10')
-        
+        const response = await axios.get(`${ProductUrl}?limit=${limit}&skip=${skip}`)
         return response.data
     } catch (error) {
         console.log("Getting error while fetching data :", error)
-        return null
+        throw error
     }
 }
 
-export const CategoryData = async(categoryName) => {
+
+
+//Fetch Category
+const categoryUrl = "https://dummyjson.com/products/categories"
+
+export const CategoryShowData = async() => {
     try {
-        const response = await axios.get(`https://fakestoreapi.com/products/category/${categoryName}?limit=100`)
+        const response = await axios.get(`${categoryUrl}`)
         return response.data
     } catch (error) {
         console.log("Getting error while fetching data :", error)
-        return null
+        throw error
+    }
+}
+
+//fetch Category with Product 
+export const CategoryProductData = async(name,limit=20) => {
+    try {
+        const response = await axios.get(`https://dummyjson.com/products/category/${name}?limit=${limit}`)
+        return response.data
+    } catch (error) {
+        console.log("Getting error while fetching data :", error)
+        throw error
+    }
+}
+
+//Search
+export const searchData = async (query)=>{
+    try {
+        const response =await axios.get(`${ProductUrl}?search=${query}`)
+        return response.data
+    } catch (error) {
+        console.error("Getting Error while searching : ",error.message);
+        throw error
     }
 }
