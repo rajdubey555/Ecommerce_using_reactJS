@@ -4,15 +4,19 @@ import SearchBox from '../ui/SearchBox'
 
 
 const Navbar = () => {
-    return (
-        <div>
-            <div className='flex px-8 py-2 bg-white justify-between'>
-                <h2 className='text-3xl  font-bold text-blue-500'>Raj Coder</h2>
-                <SearchBox />
-                <Navbar2 />
-            </div>
-        </div>
-    )
-}
+  return (
+    <div className="flex px-8 py-3 bg-[var(--card)] border-b border-[var(--border)] justify-between items-center">
+
+      <h2 className="text-3xl font-bold text-[var(--primary)]">
+        Raj Coder
+      </h2>
+
+      <SearchBox />
+
+      <Navbar2 />
+
+    </div>
+  );
+};
 
 export default Navbar

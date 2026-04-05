@@ -1,23 +1,31 @@
-import { useDispatch } from "react-redux"
-import { searchData } from "../services/api"
+import { useEffect, useState } from "react"
+import searchProduct from "../services/searchProduct"
 
 
-const useSearch = () => {
-    const dispatch = useDispatch()
 
-    const search = () => {
-        if(!query.trim()) return
-        try {
-            dispatch(setLoading())
-            const data = searchData(query)
-            dispatch(setResults(data))
-        } catch (error) {
-            dispatch(setError(error.message))
-        } finally {
-            dispatch(setLoading(false))
+const useSearch = (query) => {
+    const [products, setProducts] = useState([])
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(null)
+
+    useEffect(() => {
+if (!query) return;
+        const fetchProducts = async () => {
+            try {
+                setLoading(true)
+                setError(null)
+                const data = await searchProduct(query)
+                setProducts(data.products)  
+            } catch (error) {
+                setError(error.message || "something went Wrong")
+            } finally {
+                setLoading(false)
+            }
         }
-    }
-    return{search}
+            fetchProducts()
+       
+    }, [query])
+    return { products, loading, error };
 }
 
 export default useSearch

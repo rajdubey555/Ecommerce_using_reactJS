@@ -1,20 +1,15 @@
 import { Search } from 'lucide-react'
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { setQuery } from '../../redux/features/searchSlice'
-import useSearch from '../../hooks/useSearch'
+import {useNavigate } from 'react-router-dom'
 
 const SearchBox = () => {
-
+const navigate = useNavigate()
   const [text, setText] = useState("")
-  const dispatch = useDispatch()
-  const search = useSearch()
 
   const submitHandler = (e) => {
     e.preventDefault()
     if (!text.trim()) return
-    dispatch(setQuery(text))
-    search(text)
+     navigate(`/search?q=${text}`)
     setText("")
   }
 

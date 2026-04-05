@@ -13,6 +13,8 @@ const useAllProduct = () => {
                 setLoading(true)
                 const data = await allProductData()
                 setAllProducts(data.products)
+                console.log(data.products);
+                
             } catch (error) {
                 setError(error.message || "something went wrong")
             } finally {

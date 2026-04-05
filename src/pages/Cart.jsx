@@ -2,6 +2,8 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { decQty, incQty, removeCart } from "../redux/features/cartSlice";
 import { showSuccess } from "../utils/toast";
+import { BsCart4 } from "react-icons/bs";
+
 const Cart = () => {
 
     const cartItems = useSelector((state) => state.cart.cartItems)
@@ -9,15 +11,27 @@ const Cart = () => {
     const totalPrice =Math.round(cartItems.reduce((total, item) => {
         return total + item.price * item.quantity
     }, 0))
-    useEffect(() => {
-        localStorage.setItem("cart",JSON.stringify(cartItems))
-    },[cartItems])
+   useEffect(() => {
+    try {
+        const safeCart = cartItems.map(item => ({
+            id: item.id,
+            title: item.title,
+            price: item.price,
+            quantity: item.quantity,
+            images: item.images
+        }))
+
+        localStorage.setItem("cart", JSON.stringify(safeCart))
+    } catch (err) {
+        console.error("Error saving cart:", err)
+    }
+}, [cartItems])
 
     return (
         <div className="min-h-screen bg-gray-100 p-6">
 
-            <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">
-                🛒 My Cart
+            <h2 className=" flex justify-center items-center gap-2 text-3xl font-bold mb-6 text-center text-gray-800">
+                 My Cart<BsCart4  color='' />
             </h2>
 
             {cartItems.length === 0 ? (
@@ -30,16 +44,16 @@ const Cart = () => {
 
                     {cartItems.map((item) => (
                         <div
-                            key={item.id}
+                          
                             className="flex items-center justify-between bg-white p-4 rounded-2xl shadow-md"
                         >
 
                             {/* LEFT */}
                             <div className="flex items-center gap-4">
                                 <img
-                                    src={item.image}
+                                    src={item.images?.[0]}
                                     alt={item.title}
-                                    className="w-20 h-20 object-contain border rounded-lg"
+                                    className="w-20 h-20 object-contain rounded-lg"
                                 />
 
                                 <div>

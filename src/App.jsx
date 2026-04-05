@@ -9,14 +9,17 @@ import Cart from './pages/Cart';
 import { Toaster } from "react-hot-toast";
 import { useContext } from 'react';
 import ProductPage from './pages/ProductPage';
+import ProductDetailsPage from './pages/ProductDetailsPage';
+import SearchPage from './pages/SearchPage';
+import { Error404 } from "react-404-error-page";
 
 const App = (props) => {
 
-  const { Theme } = useContext(ThemeContext)
-  console.log(Theme);
+  const { theme } = useContext(ThemeContext)
+  console.log(theme);
   return (
 
-    <div className={Theme}>
+    <div className="min-h-screen bg-(--bg) text-(-(--text))">
 
 
       <Toaster
@@ -24,8 +27,8 @@ const App = (props) => {
         toastOptions={{
           duration: 3000,
           style: {
-            background: "#1f2937", // dark gray
-            color: "#fff",
+            background: "var(--card)",
+            color: "var(--text)",
             borderRadius: "10px",
             padding: "12px 16px",
           },
@@ -50,9 +53,19 @@ const App = (props) => {
           <Route index element={<Home />} />
           <Route path='about' element={<About />} />
           <Route path='contact' element={<Contact />} />
-          <Route path='Category/:name' element={<Category />} />
+          <Route path='category/:name' element={<Category />} />
           <Route path='cart' element={<Cart />} />
-          <Route path='ProductPage' element={<ProductPage/>}/>
+          <Route path='products' element={<ProductPage />} />
+          <Route path='product/:id' element={<ProductDetailsPage />} />
+          <Route path='search' element={<SearchPage />} />
+          <Route path="*" element={<Error404
+          title="404 ERROR"
+  subtitle="Oops! Page not found"
+  message="The page you are looking for does not exist."
+  redirectText="Go Back Home"
+  redirectUrl="/"
+  redirectDelay={5000} />} />
+
         </Route>
       </Routes>
 

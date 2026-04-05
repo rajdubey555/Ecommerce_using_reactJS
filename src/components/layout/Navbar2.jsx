@@ -2,61 +2,71 @@ import React, { useContext } from 'react'
 import { HouseHeartIcon, ShoppingCart, CircleUserRound, Info } from 'lucide-react';
 import { Link } from "react-router-dom";
 import { ThemeContext } from '../../context/ThemeContext';
-import { MdOutlineLightMode } from "react-icons/md";
-import { MdLightMode } from "react-icons/md";
-
+import { MdDarkMode, MdLightMode } from "react-icons/md";
+import { useSelector } from 'react-redux';
 
 const Navbar2 = () => {
 
-    const { theme, toggleTheme } = useContext(ThemeContext)
-    return (
-        <div className='flex justify-center items-center gap-5 text-xl font-bold text-gray-500'>
-            <div className='flex flex-row items-center justify-center gap-1'>
-                <Link to="/" className='flex items-center gap-1 font-medium hover:underline'>
-                    <HouseHeartIcon color="#0565ff" />
-                    <span> Home </span>
-                </Link>
-            </div>
-            |
-            <div className='flex flex-row items-center gap-1'>
-                <Link to="/about" className='flex items-center gap-1 font-medium hover:underline'>
-                    <Info color="#0565ff" />
-                    <span> About </span>
-                </Link>
-            </div>
-            |
-            <div className='flex flex-row items-center gap-1'>
-                <Link to="/contact" className='flex items-center gap-1 font-medium hover:underline'>
-                    <CircleUserRound color="#0565ff" />
-                    <span> Contact </span>
-                </Link>
-            </div>
-            |
-            <div className='flex flex-row items-center gap-1'>
-                <Link to="/cart" className='flex items-center gap-1 font-medium hover:underline'>
-                    <ShoppingCart color="#0565ff" />
-                    <span> Cart </span>
-                </Link>
-            </div>
+  const { theme, toggleTheme } = useContext(ThemeContext);
+  const cartItems = useSelector((state) => state.cart.cartItems);
 
-            <div className='flex flex-row items-center gap-1'>
-                <button onClick={toggleTheme} className='flex items-center gap-1 justify-center hover:underline'>
-                    {theme === "light" ?
-                        (<>
-                            <MdOutlineLightMode />
+  return (
+    <div className="flex justify-center items-center gap-5 text-xl font-bold text-[var(--text)]">
 
+      {/* Home */}
+      <Link to="/" className="flex items-center gap-1 hover:text-[var(--primary)]">
+        <HouseHeartIcon />
+        <span>Home</span>
+      </Link>
 
-                        </>)
-                        :
-                        (< >
-                            <MdLightMode />
+      |
 
-                        </>)}
+      {/* About */}
+      <Link to="/about" className="flex items-center gap-1 hover:text-[var(--primary)]">
+        <Info />
+        <span>About</span>
+      </Link>
 
-                </button>
-            </div>
-        </div>
-    )
-}
+      |
 
+      {/* Contact */}
+      <Link to="/contact" className="flex items-center gap-1 hover:text-[var(--primary)]">
+        <CircleUserRound />
+        <span>Contact</span>
+      </Link>
+
+      |
+
+      {/* Cart */}
+      <div className="relative">
+        <Link to="/cart" className="flex items-center gap-1 hover:text-[var(--primary)]">
+          <span>Cart</span>
+          <ShoppingCart />
+        </Link>
+
+        {cartItems.length > 0 && (
+          <span className="absolute -top-1 -right-3 bg-red-500 text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">
+            {cartItems.length}
+          </span>
+        )}
+      </div>
+
+      {/* Theme Toggle */}
+      <button
+        onClick={toggleTheme}
+        className="p-2 rounded-md 
+                   bg-[var(--card)] 
+                   border border-[var(--border)]
+                   hover:bg-[var(--secondary)] transition"
+      >
+        {theme === "light" ? (
+          <MdDarkMode size={20} />
+        ) : (
+          <MdLightMode size={20} />
+        )}
+      </button>
+
+    </div>
+  );
+};
 export default Navbar2

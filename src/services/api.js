@@ -38,13 +38,3 @@ export const CategoryProductData = async(name,limit=20) => {
     }
 }
 
-//Search
-export const searchData = async (query)=>{
-    try {
-        const response =await axios.get(`${ProductUrl}?search=${query}`)
-        return response.data
-    } catch (error) {
-        console.error("Getting Error while searching : ",error.message);
-        throw error
-    }
-}
