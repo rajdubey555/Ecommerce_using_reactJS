@@ -39,32 +39,34 @@ const {addItem} = useCart()
     }
 
     return (
-        <div className="bg-gray-50 py-8">
+        <div className="py-8" style={{background: 'var(--bg)'}}>
 
             <div className="max-w-7xl mx-auto px-4">
 
                 {/* TOP SECTION */}
-                <div className="bg-white rounded-xl shadow-sm p-6 grid grid-cols-12 gap-8">
+                <div className="rounded-xl shadow-sm p-4 md:p-6 flex flex-col lg:grid lg:grid-cols-12 gap-8 border"
+                     style={{background: 'var(--card)', borderColor: 'var(--border)'}}>
 
                     {/* LEFT - IMAGES */}
-                    <div className="col-span-5 flex gap-4">
+                    <div className="w-full lg:col-span-5 flex flex-col-reverse md:flex-row gap-4">
 
                         {/* Thumbnails */}
-                        <div className="flex flex-col gap-3">
+                        <div className="flex md:flex-col gap-3 overflow-x-auto md:overflow-visible pb-2 md:pb-0">
                             {product?.images?.map((img, i) => (
                                 <img
                                     key={i}
                                     src={img}
                                     alt="thumb"
                                     onClick={() => setSelectedImage(i)}
-                                    className={`w-16 h-16 object-cover rounded cursor-pointer 
-                                        ${selectedImage === i ? "border-blue-500" : ""}`}
+                                    className={`w-16 h-16 object-cover rounded cursor-pointer shrink-0 border-2 transition
+                                        ${selectedImage === i ? "border-[var(--primary)]" : "border-[var(--border)]"}`}
                                 />
                             ))}
                         </div>
 
                         {/* Main Image */}
-                        <div className="flex-1 flex items-center justify-center rounded-lg overflow-hidden">
+                        <div className="flex-1 flex items-center justify-center rounded-lg overflow-hidden"
+                             style={{background: 'var(--bg-secondary)'}}>
                             <img
                                 src={product?.images?.[selectedImage]}
                                 alt={product?.title}
@@ -75,20 +77,21 @@ const {addItem} = useCart()
                     </div>
 
                     {/* RIGHT - DETAILS */}
-                    <div className="col-span-7 space-y-4">
+                    <div className="w-full lg:col-span-7 space-y-4">
 
                         {/* TITLE */}
-                        <h1 className="text-2xl font-semibold text-gray-800">
+                        <h1 className="text-xl md:text-2xl font-semibold" style={{color: 'var(--text)'}}>
                             {product.title}
                         </h1>
 
                         {/* CATEGORY + TAGS */}
-                        <div className="flex items-center gap-3 text-sm text-gray-500">
+                        <div className="flex flex-wrap items-center gap-2 md:gap-3 text-sm" style={{color: 'var(--text-muted)'}}>
                             <span className="flex items-center gap-1">
                                 <FaTag /> {product.category}
                             </span>
                             {product.tags?.map((tag, i) => (
-                                <span key={i} className="bg-gray-100 px-2 py-1 rounded text-xs">
+                                <span key={i} className="px-2 py-1 rounded text-xs border"
+                                      style={{background: 'var(--bg-secondary)', color: 'var(--text-muted)', borderColor: 'var(--border)'}}>
                                     {tag}
                                 </span>
                             ))}
@@ -97,53 +100,53 @@ const {addItem} = useCart()
                         {/* RATING */}
                         <div className="flex items-center gap-3">
                             {renderStars(product.rating)}
-                            <span className="text-sm text-gray-500">
+                            <span className="text-sm" style={{color: 'var(--text-muted)'}}>
                                 ({product.reviews?.length} Reviews)
                             </span>
                         </div>
 
                         {/* PRICE */}
-                        <div className="flex items-center gap-3">
-                            <span className="text-3xl font-bold text-gray-800">
-                                â‚¹{Math.round(discountedPrice.toFixed(2))}
+                        <div className="flex flex-wrap items-center gap-2 md:gap-3">
+                            <span className="text-2xl md:text-3xl font-bold" style={{color: 'var(--text)'}}>
+                                ₹{Math.round(discountedPrice.toFixed(2))}
                             </span>
-                            <span className="line-through text-gray-400">
-                                â‚¹{Math.round(product.price)}
+                            <span className="line-through" style={{color: 'var(--text-subtle)'}}>
+                                ₹{Math.round(product.price)}
                             </span>
-                            <span className="text-green-600 font-medium">
+                            <span className="text-green-500 font-medium">
                                 {Math.round(product.discountPercentage)}% OFF
                             </span>
                         </div>
 
                         {/* OFFERS */}
                         <div className="text-sm space-y-1">
-                            <p className="flex items-center gap-2 text-green-600">
-                                <MdLocalOffer /> Bank Offer Available
+                            <p className="flex items-center gap-2 text-green-500">
+                                <MdLocalOffer className="shrink-0" /> Bank Offer Available
                             </p>
-                            <p className="flex items-center gap-2 text-green-600">
-                                <MdLocalOffer /> Special Discount Applied
+                            <p className="flex items-center gap-2 text-green-500">
+                                <MdLocalOffer className="shrink-0" /> Special Discount Applied
                             </p>
                         </div>
 
                         {/* DELIVERY + STOCK */}
-                        <div className="space-y-2 text-sm text-gray-600">
+                        <div className="space-y-2 text-sm" style={{color: 'var(--text-muted)'}}>
                             <p className="flex items-center gap-2">
-                                <FaTruck /> {product.shippingInformation}
+                                <FaTruck className="shrink-0" /> {product.shippingInformation}
                             </p>
                             <p className="flex items-center gap-2">
-                                <FaTruck /> Stock: {product.stock}
+                                <FaTruck className="shrink-0" /> Stock: {product.stock}
                             </p>
-                            <p className="flex items-center gap-2 text-green-600">
-                                <MdVerified /> {product.availabilityStatus}
+                            <p className="flex items-center gap-2 text-green-500">
+                                <MdVerified className="shrink-0" /> {product.availabilityStatus}
                             </p>
                         </div>
 
                         {/* BUTTONS */}
-                        <div className="flex gap-4 pt-4">
-                            <button onClick={addItem}  className="flex items-center gap-2 bg-yellow-400 hover:bg-yellow-500 px-6 py-3 rounded-lg font-medium shadow hover:scale-105 transition">
+                        <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                            <button onClick={addItem} className="flex justify-center items-center gap-2 bg-yellow-400 hover:bg-yellow-500 text-gray-900 px-6 py-3 rounded-lg font-medium shadow hover:scale-105 transition w-full sm:w-auto">
                                 <FaShoppingCart /> Add to Cart
                             </button>
-                            <button className="flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-medium shadow hover:scale-105 transition">
+                            <button className="flex justify-center items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-medium shadow hover:scale-105 transition w-full sm:w-auto">
                                 <FaBolt /> Buy Now
                             </button>
                         </div>
@@ -153,42 +156,45 @@ const {addItem} = useCart()
                 </div>
 
                 {/* DESCRIPTION */}
-                <div className="bg-white mt-6 p-6 rounded-xl shadow-sm">
-                    <h2 className="text-lg font-semibold border-b pb-2">Description</h2>
-                    <p className="text-gray-700 mt-3 leading-relaxed text-sm">
+                <div className="mt-6 p-6 rounded-xl shadow-sm border"
+                     style={{background: 'var(--card)', borderColor: 'var(--border)'}}>
+                    <h2 className="text-lg font-semibold border-b pb-2" style={{color: 'var(--text)', borderColor: 'var(--border)'}}>Description</h2>
+                    <p className="mt-3 leading-relaxed text-sm" style={{color: 'var(--text-muted)'}}>
                         {product.description}
                     </p>
                 </div>
 
                 {/* SPECIFICATIONS */}
-                <div className="bg-white mt-6 p-6 rounded-xl shadow-sm">
-                    <h2 className="text-lg font-semibold border-b pb-2">Specifications</h2>
+                <div className="mt-6 p-6 rounded-xl shadow-sm border"
+                     style={{background: 'var(--card)', borderColor: 'var(--border)'}}>
+                    <h2 className="text-lg font-semibold border-b pb-2" style={{color: 'var(--text)', borderColor: 'var(--border)'}}>Specifications</h2>
 
-                    <div className="grid grid-cols-2 gap-y-3 text-sm mt-4">
-                        <p><span className="font-medium">Brand:</span> {product.brand}</p>
-                        <p><span className="font-medium">SKU:</span> {product.sku}</p>
-                        <p><span className="font-medium">Weight:</span> {product.weight}g</p>
-                        <p><span className="font-medium">Warranty:</span> {product.warrantyInformation}</p>
+                    <div className="grid grid-cols-2 gap-y-3 text-sm mt-4" style={{color: 'var(--text-muted)'}}>
+                        <p><span className="font-medium" style={{color: 'var(--text)'}}>Brand:</span> {product.brand}</p>
+                        <p><span className="font-medium" style={{color: 'var(--text)'}}>SKU:</span> {product.sku}</p>
+                        <p><span className="font-medium" style={{color: 'var(--text)'}}>Weight:</span> {product.weight}g</p>
+                        <p><span className="font-medium" style={{color: 'var(--text)'}}>Warranty:</span> {product.warrantyInformation}</p>
                         <p>
-                            <span className="font-medium">Dimensions:</span>{" "}
+                            <span className="font-medium" style={{color: 'var(--text)'}}>Dimensions:</span>{" "}
                             {product.dimensions?.width} x {product.dimensions?.height} x {product.dimensions?.depth}
                         </p>
                     </div>
                 </div>
 
                 {/* REVIEWS */}
-                <div className="bg-white mt-6 p-6 rounded-xl shadow-sm ">
-                    <h2 className="text-lg font-semibold border-b pb-2">Reviews</h2>
+                <div className="mt-6 p-6 rounded-xl shadow-sm border"
+                     style={{background: 'var(--card)', borderColor: 'var(--border)'}}>
+                    <h2 className="text-lg font-semibold border-b pb-2" style={{color: 'var(--text)', borderColor: 'var(--border)'}}>Reviews</h2>
 
                     <div className="mt-4 space-y-4">
                         {product?.reviews?.map((review, i) => (
-                            <div key={i} className=" rounded-lg p-4">
+                            <div key={i} className="rounded-lg p-4 border" style={{borderColor: 'var(--border)', background: 'var(--bg-secondary)'}}>
 
                                 <div className="flex items-center gap-3 mb-2">
-                                    <FaUserCircle className="text-2xl text-gray-400" />
+                                    <FaUserCircle className="text-2xl" style={{color: 'var(--text-muted)'}} />
                                     <div>
-                                        <p className="font-medium">{review.reviewerName}</p>
-                                        <p className="text-xs text-gray-500">
+                                        <p className="font-medium" style={{color: 'var(--text)'}}>{review.reviewerName}</p>
+                                        <p className="text-xs" style={{color: 'var(--text-subtle)'}}>
                                             {new Date(review.date).toLocaleDateString()}
                                         </p>
                                     </div>
@@ -196,7 +202,7 @@ const {addItem} = useCart()
 
                                 {renderStars(review.rating)}
 
-                                <p className="text-gray-600 mt-2 text-sm">
+                                <p className="mt-2 text-sm" style={{color: 'var(--text-muted)'}}>
                                     {review.comment}
                                 </p>
 

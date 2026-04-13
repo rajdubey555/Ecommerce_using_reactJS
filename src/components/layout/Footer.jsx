@@ -11,7 +11,7 @@ const Footer = () => {
       <div className="flex flex-wrap py-6">
 
         {/* LEFT */}
-        <div className="w-full md:w-1/3 flex flex-col gap-3 px-10">
+        <div className="w-full md:w-1/3 flex flex-col gap-3 px-4 md:px-10">
           <h1 className="text-3xl font-bold text-[var(--footer-text)]">
             RajCoder
           </h1>
@@ -60,7 +60,7 @@ const Footer = () => {
         </div>
 
         {/* MIDDLE */}
-        <div className="w-full md:w-1/3 flex flex-col gap-2 px-10 mt-6 md:mt-0">
+        <div className="w-full md:w-1/3 flex flex-col gap-2 px-4 md:px-10 mt-6 md:mt-0">
           <h1 className="border-b border-[var(--footer-text)] pb-1 text-[var(--footer-text)] text-lg">
             Most Popular Category
           </h1>
@@ -78,7 +78,7 @@ const Footer = () => {
         </div>
 
         {/* RIGHT */}
-        <div className="w-full md:w-1/3 flex flex-col gap-2 px-10 mt-6 md:mt-0">
+        <div className="w-full md:w-1/3 flex flex-col gap-2 px-4 md:px-10 mt-6 md:mt-0">
           <h1 className="border-b border-[var(--footer-text)] pb-1 text-[var(--footer-text)] text-lg">
             Most Popular Category
           </h1>

@@ -47,10 +47,10 @@ const ProductPage = () => {
               </div>
             ) : (
               <div className="text-center">
-                <h2 className="text-xl font-semibold text-gray-700">
+                <h2 className="text-xl font-semibold" style={{ color: 'var(--text-muted)' }}>
                   No Products Found 😕
                 </h2>
-                <p className="text-gray-500 mt-2">
+                <p className="mt-2 text-sm" style={{ color: 'var(--text-subtle)' }}>
                   Try adjusting filters or search again
                 </p>
               </div>
@@ -69,7 +69,7 @@ const ProductPage = () => {
         </>
       )}
 
-</div>
+    </div>
   );
 }
 

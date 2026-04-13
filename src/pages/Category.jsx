@@ -38,7 +38,7 @@ const Category = () => {
     return (
         <div className='mt-5 mb-5 w-full'>
             <div className='flex  justify-center'>
-                <h1 className='text-2xl font-bold px-5 items-center  text-gray-600 '>{name.charAt(0).toUpperCase() + name.slice(1)}</h1>
+                <h1 className='text-2xl font-bold px-5 items-center' style={{color: 'var(--text)'}}>{name.charAt(0).toUpperCase() + name.slice(1)}</h1>
             </div>
             <div
                 className=" mt-1 pl-4 flex flex-wrap gap-10 justify-center w-full"

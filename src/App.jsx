@@ -18,6 +18,7 @@ import OrderReview from './components/checkout/OrderReview';
 import PaymentMethod from './components/checkout/PaymentMethod';
 import PlaceOrder from './components/checkout/PlaceOrder';
 import OrderSuccess from './components/checkout/OrderSuccess';
+import Orders from './pages/Orders';
 
 const App = (props) => {
 
@@ -69,7 +70,8 @@ const App = (props) => {
           <Route path='order-review' element={<OrderReview />} />
           <Route path='payment' element={<PaymentMethod />} />
           <Route path='place-order' element={<PlaceOrder />} />
-<Route path="order-success/:id" element={<OrderSuccess />} />
+          <Route path="order-success/:id" element={<OrderSuccess />} />
+          <Route path="orders" element={<Orders />} />
           <Route path="*" element={<Error404
             title="404 ERROR"
             subtitle="Oops! Page not found"

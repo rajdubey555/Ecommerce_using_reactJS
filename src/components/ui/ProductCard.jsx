@@ -37,30 +37,30 @@ const ProductCard = ({ product, onAddToCart, ontoggleWishlist }) => {
 
   return (
     <div className="bg-[var(--card)] border border-[var(--border)] 
-                    h-64 mt-3 w-full max-w-[250px] 
-                    rounded-2xl shadow-sm 
+                    w-full rounded-2xl shadow-sm 
                     hover:shadow-lg hover:scale-105 
-                    transition duration-300 relative">
+                    transition duration-300 relative
+                    flex flex-col pb-3">
 
       {/* Discount Badge */}
       <div className="absolute top-0 left-0 
                       bg-[var(--primary)] text-white 
                       text-xs font-bold px-2 py-1 
-                      rounded-br-lg">
+                      rounded-br-lg z-10">
         {Math.round(product.discountPercentage)}% OFF
       </div>
 
       <div onClick={handleAddToWishlist}
         className="absolute top-1 right-1  
                      text-black 
-                      text-2xl font-bold px-2 py-1
-                      rounded-full hover:text-red-600">
+                      text-xl font-bold px-2 py-1
+                      rounded-full hover:text-red-600 z-10 cursor-pointer">
         {<FaHeart color={isWishlisted ? "red" : "black"} />}
       </div>
       
       <Link to={`/product/${product.id}`}>
         {/* Image */}
-        <div className="h-[60%] p-3">
+        <div className="h-36 p-3">
           <img
             className="w-full h-full object-contain"
             src={product?.images?.[0]}
@@ -70,35 +70,34 @@ const ProductCard = ({ product, onAddToCart, ontoggleWishlist }) => {
       </Link>
 
       {/* Content */}
-      <div className="flex flex-col px-3 items-center gap-1 text-[var(--text)]">
+      <div className="flex flex-col px-2 items-center gap-1 text-[var(--text)] flex-1 justify-end">
 
-        <h1 className="line-clamp-1 text-sm font-semibold">
+        <h1 className="line-clamp-1 text-xs font-semibold text-center w-full">
           {product.title}
         </h1>
 
-        <h3 className="text-sm flex justify-center items-center">
-          <FaRupeeSign />{Math.round(product.price)}
+        <h3 className="text-xs flex justify-center items-center font-medium">
+          <FaRupeeSign className="text-[10px]" />{Math.round(product.price)}
         </h3>
 
         {/* Buttons */}
-        <div className="flex gap-2 mt-1">
+        <div className="flex gap-1 mt-1 w-full px-1">
 
-          <button className="px-3 py-1 text-xs rounded-md 
+          <button className="flex-1 py-1 text-[10px] rounded-md 
                              bg-[var(--primary)] text-white 
-                             hover:opacity-90 active:scale-95 transition">
+                             hover:opacity-90 active:scale-95 transition truncate">
             Buy Now
           </button>
 
           <button
             onClick={handleAddToCart}
-            className="px-3 py-1 text-xs rounded-md 
+            className="flex-1 py-1 text-[10px] rounded-md 
                        border border-[var(--border)] 
                        text-white
                        bg-[var(--primary)]
-                       hover:bg- 
-                       active:scale-95 transition"
+                       active:scale-95 transition truncate"
           >
-            Add To Cart
+            Add Cart
           </button>
 
         </div>

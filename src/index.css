@@ -1,38 +1,72 @@
 @import "tailwindcss";
 
-/* .scrollbar-hide::-webkit-scrollbar {
-  display: none;
-} */
-
-
-/* LIGHT THEME */
+/* ═══════════════════════════════════════
+   LIGHT THEME
+═══════════════════════════════════════ */
 :root {
-  --bg: #ffffff;
-  --text: #1a1a1a;
-  --card: #f9fafb;
-  --border: #e5e7eb;
+  --bg: #f8fafc;
+  --bg-secondary: #f1f5f9;
+  --card: #ffffff;
+  --card-hover: #f8fafc;
+  --text: #1e293b;
+  --text-muted: #64748b;
+  --text-subtle: #94a3b8;
+  --border: #e2e8f0;
+  --border-strong: #cbd5e1;
   --primary: #2563eb;
-
-  /* 👇 NEW */
-  --footer-bg: #2563eb;
-  --footer-text: #ffffff;
+  --primary-hover: #1d4ed8;
+  --input-bg: #ffffff;
+  --input-border: #d1d5db;
+  --skeleton: #e2e8f0;
+  --skeleton-shine: #f1f5f9;
+  --shadow: rgba(0,0,0,0.06);
+  --footer-bg: #1e3a5f;
+  --footer-text: #e2e8f0;
+  --nav-bg: #ffffff;
 }
 
+/* ═══════════════════════════════════════
+   DARK THEME
+═══════════════════════════════════════ */
 .dark {
   --bg: #0f172a;
-  --text: #f1f5f9;
+  --bg-secondary: #1e293b;
   --card: #1e293b;
+  --card-hover: #263248;
+  --text: #f1f5f9;
+  --text-muted: #94a3b8;
+  --text-subtle: #64748b;
   --border: #334155;
+  --border-strong: #475569;
   --primary: #3b82f6;
-
-  /* 👇 DARK VERSION */
-  --footer-bg: #1e293b;
-  --footer-text: #e2e8f0;
+  --primary-hover: #2563eb;
+  --input-bg: #0f172a;
+  --input-border: #475569;
+  --skeleton: #1e293b;
+  --skeleton-shine: #263248;
+  --shadow: rgba(0,0,0,0.3);
+  --footer-bg: #0f172a;
+  --footer-text: #cbd5e1;
+  --nav-bg: #1e293b;
 }
 
-/* APPLY GLOBAL */
+/* ═══════════════════════════════════════
+   GLOBAL BASE
+═══════════════════════════════════════ */
+*, *::before, *::after {
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.15s ease;
+}
+
 body {
   background: var(--bg);
   color: var(--text);
-  @apply transition-all duration-300;
 }
+
+/* Swiper pagination dots theme */
+.swiper-pagination-bullet {
+  background: var(--border-strong) !important;
+  opacity: 1 !important;
+}
+.swiper-pagination-bullet-active {
+  background: var(--primary) !important;
+}

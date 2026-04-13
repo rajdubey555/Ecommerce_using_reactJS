@@ -4,17 +4,16 @@ import ErrorState from '../common/ErrorState';
 import EmptyState from '../common/EmptyState';
 import { categoryImages } from '../../utils/categoryImages';
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Navigation, Autoplay, Pagination } from 'swiper/modules'
+import { Navigation, Autoplay } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/navigation'
-import 'swiper/css/pagination'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 
 
 const ProductCategories = () => {
 
     const { categories, loading, error } = useCategories()
-console.log(categories);
+    console.log(categories);
 
     if (error) return <ErrorState message={error} />;
     if (!loading && categories.length === 0) {
@@ -30,35 +29,37 @@ console.log(categories);
         <div className='mt-5 mb-5 px-4'>
 
             {/* Header */}
-            <div className='flex justify-between items-center '>
-                <h1 className='text-2xl font-bold px-5 text-gray-600 '>Top Categories</h1>
-
+            <div className='flex justify-between items-center px-2 md:px-5 mb-4'>
+                <h1 className='text-2xl font-bold' style={{color: 'var(--text)'}}>Top Categories</h1>
             </div>
 
             {/* Horizontal Scroll Container */}
-            <div className='w-full relative'>
+            <div className='w-full relative px-2 md:px-8'>
                 {/* Left Button */}
-                <button className="prev-btn absolute -left-2 top-1/2 z-10 -translate-y-1/2 bg-white shadow-md  rounded-full hover:scale-110 transition">
-                    <FaChevronLeft />
+                <button className="prev-btn absolute left-0 md:-left-2 top-1/2 z-10 -translate-y-1/2 shadow-lg border rounded-full w-10 h-10 hidden md:flex items-center justify-center hover:scale-110 transition"
+                        style={{background: 'var(--card)', borderColor: 'var(--border)'}}>
+                    <FaChevronLeft style={{color: 'var(--text-muted)'}} />
                 </button>
 
                 {/* Right Button */}
-                <button className="next-btn absolute -right-2 top-1/2 z-10 -translate-y-1/2 bg-white shadow-md  rounded-full hover:scale-110 transition">
-                    <FaChevronRight />
+                <button className="next-btn absolute right-0 md:-right-2 top-1/2 z-10 -translate-y-1/2 shadow-lg border rounded-full w-10 h-10 hidden md:flex items-center justify-center hover:scale-110 transition"
+                        style={{background: 'var(--card)', borderColor: 'var(--border)'}}>
+                    <FaChevronRight style={{color: 'var(--text-muted)'}} />
                 </button>
 
                 <Swiper
-                    modules={[Navigation, Pagination, Autoplay]}
+                    className="py-2"
+                    modules={[Navigation, Autoplay]}
                     spaceBetween={20}
                     speed={800}
-                   breakpoints={{
-                        0: { slidesPerView: 1 },        // very small phones
-                        480: { slidesPerView: 2 },      // small phones
-                        640: { slidesPerView: 2 },      // large phones
-                        768: { slidesPerView: 4 },      // tablets
-                        1024: { slidesPerView: 4 },     // small laptops
-                        1280: { slidesPerView: 5 },     // desktops
-                        1536: { slidesPerView: 8 },     // large screens
+                    breakpoints={{
+                        0:    { slidesPerView: 3, spaceBetween: 10 },  // mobile — 3 circles
+                        480:  { slidesPerView: 4, spaceBetween: 12 },
+                        640:  { slidesPerView: 4, spaceBetween: 14 },
+                        768:  { slidesPerView: 5, spaceBetween: 16 },
+                        1024: { slidesPerView: 6, spaceBetween: 20 },
+                        1280: { slidesPerView: 7, spaceBetween: 20 },
+                        1536: { slidesPerView: 8, spaceBetween: 20 },
                     }}
                     centeredSlides={false}
                     navigation={{
@@ -66,7 +67,6 @@ console.log(categories);
                         prevEl: '.prev-btn',
                     }}
                     loop={true}
-                    pagination={{ clickable: true }}
                     autoplay={{
                         delay: 3000,
                         disableOnInteraction: false,
@@ -75,27 +75,30 @@ console.log(categories);
                 >
                     {categories.map((item) => (
                         <SwiperSlide key={item.id} className="flex justify-center">
-
-                            <div className='h-60 w-full max-w-45 mx-auto rounded-3xl transition-all duration-300 hover:scale-105 hover:shadow-lg'>
-
-                                <Link to={`/category/${item.name}`}>
-
-                                    <div className='h-[75%] p-3'>
-                                        <img
-                                            className='w-full h-full object-cover rounded-full bg-gray-200'
-                                            src={categoryImages[item.slug]}
-                                            alt={item.name}
-                                        />
-                                    </div>
-
-                                    <div className='flex flex-col items-center font-semibold'>
-                                        <h1 className='line-clamp-1'>{item.name}</h1>
-                                    </div>
-
-                                </Link>
-
-                            </div>
-
+                            <Link
+                                to={`/category/${item.name}`}
+                                className="flex flex-col items-center gap-2 group w-full py-2"
+                            >
+                                {/* Circle */}
+                                <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32
+                                                rounded-full overflow-hidden
+                                                border-2 border-gray-200 shadow-sm bg-gray-50 mx-auto
+                                                group-hover:scale-105 group-hover:border-[var(--primary)]
+                                                transition-all duration-200 shrink-0">
+                                    <img
+                                        className="w-full h-full object-cover"
+                                        src={categoryImages[item.slug]}
+                                        alt={item.name}
+                                    />
+                                </div>
+                                {/* Label */}
+                                <span className="text-[11px] sm:text-xs md:text-sm font-semibold
+                                                 text-center line-clamp-2
+                                                 leading-tight w-full px-1"
+                                      style={{color: 'var(--text-muted)'}}>
+                                    {item.name}
+                                </span>
+                            </Link>
                         </SwiperSlide>
                     ))}
                 </Swiper>
