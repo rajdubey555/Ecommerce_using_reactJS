@@ -34,7 +34,7 @@ if (loading && products.length === 0)
                 <h1 className='text-2xl font-bold px-5 items-center  text-gray-600 '>Results for "{query}"</h1>
             </div>
             <div
-                className=" mt-1 pl-4 flex flex-wrap gap-5 justify-center"
+                className="mt-1 pl-4 flex flex-wrap gap-5 justify-center"
             >
                 {currentData.map((elem) => (
                     <ProductCard

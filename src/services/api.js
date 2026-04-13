@@ -37,4 +37,3 @@ export const CategoryProductData = async(name,limit=20) => {
         throw error
     }
 }
-

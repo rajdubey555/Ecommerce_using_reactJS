@@ -12,6 +12,12 @@ import ProductPage from './pages/ProductPage';
 import ProductDetailsPage from './pages/ProductDetailsPage';
 import SearchPage from './pages/SearchPage';
 import { Error404 } from "react-404-error-page";
+import Wishlist from './pages/Wishlist';
+import Checkout from './pages/Checkout';
+import OrderReview from './components/checkout/OrderReview';
+import PaymentMethod from './components/checkout/PaymentMethod';
+import PlaceOrder from './components/checkout/PlaceOrder';
+import OrderSuccess from './components/checkout/OrderSuccess';
 
 const App = (props) => {
 
@@ -58,14 +64,19 @@ const App = (props) => {
           <Route path='products' element={<ProductPage />} />
           <Route path='product/:id' element={<ProductDetailsPage />} />
           <Route path='search' element={<SearchPage />} />
+          <Route path='wishlist' element={<Wishlist />} />
+          <Route path='checkout' element={<Checkout />} />
+          <Route path='order-review' element={<OrderReview />} />
+          <Route path='payment' element={<PaymentMethod />} />
+          <Route path='place-order' element={<PlaceOrder />} />
+<Route path="order-success/:id" element={<OrderSuccess />} />
           <Route path="*" element={<Error404
-          title="404 ERROR"
-  subtitle="Oops! Page not found"
-  message="The page you are looking for does not exist."
-  redirectText="Go Back Home"
-  redirectUrl="/"
-  redirectDelay={5000} />} />
-
+            title="404 ERROR"
+            subtitle="Oops! Page not found"
+            message="The page you are looking for does not exist."
+            redirectText="Go Back Home"
+            redirectUrl="/"
+            redirectDelay={5000} />} />
         </Route>
       </Routes>
 

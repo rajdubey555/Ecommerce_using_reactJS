@@ -16,7 +16,7 @@ export const dismissToast = (id) => {
   toast.dismiss(id);
 };
 
-// Promise based (BEST 🔥)
+
 export const showPromise = (promise, messages) => {
   toast.promise(promise, {
     loading: messages.loading || "Loading...",

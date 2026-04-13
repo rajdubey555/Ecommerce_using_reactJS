@@ -105,10 +105,10 @@ const {addItem} = useCart()
                         {/* PRICE */}
                         <div className="flex items-center gap-3">
                             <span className="text-3xl font-bold text-gray-800">
-                                ₹{Math.round(discountedPrice.toFixed(2))}
+                                â‚¹{Math.round(discountedPrice.toFixed(2))}
                             </span>
                             <span className="line-through text-gray-400">
-                                ₹{Math.round(product.price)}
+                                â‚¹{Math.round(product.price)}
                             </span>
                             <span className="text-green-600 font-medium">
                                 {Math.round(product.discountPercentage)}% OFF

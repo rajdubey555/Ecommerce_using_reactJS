@@ -14,6 +14,7 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 const ProductCategories = () => {
 
     const { categories, loading, error } = useCategories()
+console.log(categories);
 
     if (error) return <ErrorState message={error} />;
     if (!loading && categories.length === 0) {
@@ -31,13 +32,7 @@ const ProductCategories = () => {
             {/* Header */}
             <div className='flex justify-between items-center '>
                 <h1 className='text-2xl font-bold px-5 text-gray-600 '>Top Categories</h1>
-                <Link to="/ProductDetailsPage">
-                    <button
-                        className=' h-10 w-20 text-lg text-gray-800 hover:text-blue-800 hover:scale-105' type='button'
-                    >
-                        View all
-                    </button>
-                </Link>
+
             </div>
 
             {/* Horizontal Scroll Container */}

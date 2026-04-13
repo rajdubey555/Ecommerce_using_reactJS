@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { ThemeContext } from '../../context/ThemeContext';
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { useSelector } from 'react-redux';
+import { FaHeart } from "react-icons/fa";
 
 const Navbar2 = () => {
 
@@ -50,6 +51,14 @@ const Navbar2 = () => {
           </span>
         )}
       </div>
+
+      |
+
+      <Link to="/wishlist" className="flex items-center gap-1 hover:text-[var(--primary)]">
+        <FaHeart color="red" />
+
+      </Link>
+      |
 
       {/* Theme Toggle */}
       <button

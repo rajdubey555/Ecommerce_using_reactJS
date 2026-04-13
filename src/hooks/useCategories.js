@@ -16,7 +16,6 @@ const useCategories = () => {
                 data.forEach(item => {
                     const exists = uniqueCategories.find(
                         (c) => c.name === item.name)
-
                     if (!exists) {
                         uniqueCategories.push(item)
                     }

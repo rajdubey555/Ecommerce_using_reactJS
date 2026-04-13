@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { decQty, incQty, removeCart } from "../redux/features/cartSlice";
 import { showSuccess } from "../utils/toast";
 import { BsCart4 } from "react-icons/bs";
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
 
@@ -11,6 +12,7 @@ const Cart = () => {
     const totalPrice =Math.round(cartItems.reduce((total, item) => {
         return total + item.price * item.quantity
     }, 0))
+
    useEffect(() => {
     try {
         const safeCart = cartItems.map(item => ({
@@ -20,7 +22,6 @@ const Cart = () => {
             quantity: item.quantity,
             images: item.images
         }))
-
         localStorage.setItem("cart", JSON.stringify(safeCart))
     } catch (err) {
         console.error("Error saving cart:", err)
@@ -39,7 +40,6 @@ const Cart = () => {
                     <p className="text-gray-500 text-lg">Your cart is empty 😢</p>
                 </div>
             ) : (
-
                 <div className="max-w-5xl mx-auto space-y-4">
 
                     {cartItems.map((item) => (
@@ -110,10 +110,11 @@ const Cart = () => {
                                 ₹{totalPrice}
                             </span>
                         </div>
-
+<Link to={!cartItems.length ? '#':'/checkout'}>
                         <button className="w-full mt-4 bg-black text-white py-3 rounded-xl hover:bg-gray-800">
                             Checkout
                         </button>
+                        </Link>
                     </div>
 
                 </div>

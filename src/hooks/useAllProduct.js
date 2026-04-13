@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import { allProductData } from '../services/productService'
+import { useDispatch } from 'react-redux'
+import { setProducts } from '../redux/features/productSlice'
 
 const useAllProduct = () => {
 
-    const [allProducts, setAllProducts] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
+
+    const dispatch = useDispatch()
 
     useEffect(() => {
         const fetchAllProducts = async () => {
             try {
                 setLoading(true)
                 const data = await allProductData()
-                setAllProducts(data.products)
+                dispatch(setProducts(data.products))
                 console.log(data.products);
                 
             } catch (error) {
@@ -22,9 +25,9 @@ const useAllProduct = () => {
             }
         }
         fetchAllProducts()
-    }, [])
+    }, [dispatch])
 
-    return { allProducts, loading, error }
+    return { loading, error }
 }
 
 export default useAllProduct

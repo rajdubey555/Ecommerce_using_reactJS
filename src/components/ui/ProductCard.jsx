@@ -1,21 +1,37 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { addToCart } from "../../redux/features/cartSlice";
 import { showSuccess } from "../../utils/toast";
 import { Link } from 'react-router-dom';
 import { BsCart4 } from 'react-icons/bs';
+import { FaHeart, FaRupeeSign } from "react-icons/fa";
+import { toggleWishlist } from '../../redux/features/wishListSlicer';
 
-const ProductCard = ({ product, onAddToCart }) => {
+const ProductCard = ({ product, onAddToCart, ontoggleWishlist }) => {
 
   const dispatch = useDispatch()
+  const wishlist = useSelector((state) => state.wishlist.items || [])
+  const isWishlisted = wishlist.some((i) => i.id === product.id);
   const handleAddToCart = () => {
     if (onAddToCart) {
       onAddToCart(product)   // custom behavior
     } else {
       dispatch(addToCart(product))  // default behavior
       showSuccess(<span className="flex items-center gap-2">
-            {product.title} added <BsCart4 />
-        </span>);
+        {product.title} added <BsCart4 />
+      </span>);
+    }
+  }
+
+  const handleAddToWishlist = () => {
+    if (ontoggleWishlist) {
+      ontoggleWishlist(product)   // custom behavior
+    } else {
+      dispatch(toggleWishlist(product))  // default behavior
+      showSuccess(<span className="flex items-center gap-2">
+        {isWishlisted ? "Removed from" : "Added to"} Wishlist
+        <FaHeart color="red" />
+      </span>);
     }
   }
 
@@ -25,15 +41,24 @@ const ProductCard = ({ product, onAddToCart }) => {
                     rounded-2xl shadow-sm 
                     hover:shadow-lg hover:scale-105 
                     transition duration-300 relative">
-      <Link to={`/product/${product.id}`}>
-        {/* Discount Badge */}
-        <div className="absolute top-0 right-0 
+
+      {/* Discount Badge */}
+      <div className="absolute top-0 left-0 
                       bg-[var(--primary)] text-white 
                       text-xs font-bold px-2 py-1 
-                      rounded-bl-lg">
-          {Math.round(product.discountPercentage)}% OFF
-        </div>
+                      rounded-br-lg">
+        {Math.round(product.discountPercentage)}% OFF
+      </div>
 
+      <div onClick={handleAddToWishlist}
+        className="absolute top-1 right-1  
+                     text-black 
+                      text-2xl font-bold px-2 py-1
+                      rounded-full hover:text-red-600">
+        {<FaHeart color={isWishlisted ? "red" : "black"} />}
+      </div>
+      
+      <Link to={`/product/${product.id}`}>
         {/* Image */}
         <div className="h-[60%] p-3">
           <img
@@ -43,6 +68,7 @@ const ProductCard = ({ product, onAddToCart }) => {
           />
         </div>
       </Link>
+
       {/* Content */}
       <div className="flex flex-col px-3 items-center gap-1 text-[var(--text)]">
 
@@ -50,8 +76,8 @@ const ProductCard = ({ product, onAddToCart }) => {
           {product.title}
         </h1>
 
-        <h3 className="text-sm">
-          ₹{Math.round(product.price)}
+        <h3 className="text-sm flex justify-center items-center">
+          <FaRupeeSign />{Math.round(product.price)}
         </h3>
 
         {/* Buttons */}
