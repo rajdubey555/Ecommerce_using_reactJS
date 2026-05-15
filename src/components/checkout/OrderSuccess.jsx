@@ -7,9 +7,11 @@ const OrderSuccess = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 to-gray-100 px-4">
-      
-      <div className="bg-white p-8 rounded-2xl shadow-xl text-center max-w-md w-full animate-fade-in">
+    <div className="min-h-screen flex items-center justify-center px-4 py-10"
+         style={{ background: 'var(--bg)' }}>
+
+      <div className="p-7 sm:p-8 rounded-2xl shadow-xl border text-center w-full max-w-md"
+           style={{ background: 'var(--card)', borderColor: 'var(--border)' }}>
 
         {/* Icon */}
         <div className="flex justify-center mb-4">
@@ -17,41 +19,43 @@ const OrderSuccess = () => {
         </div>
 
         {/* Title */}
-        <h2 className="text-2xl font-bold mb-2 text-gray-800">
+        <h2 className="text-xl sm:text-2xl font-bold mb-2" style={{ color: 'var(--text)' }}>
           Order Placed Successfully 🎉
         </h2>
 
         {/* Subtitle */}
-        <p className="text-gray-500 mb-4">
+        <p className="mb-4" style={{ color: 'var(--text-muted)' }}>
           Thank you for your purchase!
         </p>
 
         {/* Order ID */}
-        <div className="bg-gray-100 rounded-lg p-3 mb-6">
-          <p className="text-sm text-gray-500">Order ID</p>
-          <p className="text-blue-600 font-semibold break-all">
+        <div className="rounded-lg p-3 mb-6" style={{ background: 'var(--bg-secondary)' }}>
+          <p className="text-sm" style={{ color: 'var(--text-subtle)' }}>Order ID</p>
+          <p className="font-semibold break-all text-sm" style={{ color: 'var(--primary)' }}>
             {id || "N/A"}
           </p>
         </div>
 
         {/* Info */}
-        <p className="text-gray-500 text-sm mb-6">
+        <p className="text-sm mb-6" style={{ color: 'var(--text-muted)' }}>
           Your order is being processed and will be delivered soon 🚚
         </p>
 
         {/* Buttons */}
         <div className="flex flex-col gap-3">
-          
+
           <button
             onClick={() => navigate("/")}
-            className="bg-black text-white py-3 rounded-xl hover:bg-gray-800 transition"
+            className="py-3 rounded-xl text-white font-semibold hover:opacity-90 transition"
+            style={{ background: 'var(--primary)' }}
           >
             Continue Shopping
           </button>
 
           <button
             onClick={() => navigate("/orders")}
-            className="border border-gray-300 py-3 rounded-xl hover:bg-gray-100 transition"
+            className="py-3 rounded-xl font-semibold border hover:opacity-80 transition"
+            style={{ borderColor: 'var(--border)', color: 'var(--text)', background: 'var(--bg-secondary)' }}
           >
             View My Orders
           </button>

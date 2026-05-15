@@ -23,7 +23,7 @@ const Navbar2 = () => {
       <span className="hidden md:inline">|</span>
 
       {/* About */}
-      <Link to="/about" className="flex items-center gap-1 hover:text-[var(--primary)]">
+      {/* <Link to="/about" className="flex items-center gap-1 hover:text-[var(--primary)]">
         <Info className="w-5 h-5 md:w-6 md:h-6" />
         <span className="hidden md:inline">About</span>
       </Link>
@@ -31,10 +31,10 @@ const Navbar2 = () => {
       <span className="hidden md:inline">|</span>
 
       {/* Contact */}
-      <Link to="/contact" className="flex items-center gap-1 hover:text-[var(--primary)]">
+      {/* <Link to="/contact" className="flex items-center gap-1 hover:text-[var(--primary)]">
         <CircleUserRound className="w-5 h-5 md:w-6 md:h-6" />
         <span className="hidden md:inline">Contact</span>
-      </Link>
+      </Link> */}
 
       <span className="hidden md:inline">|</span>
 

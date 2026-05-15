@@ -18,34 +18,29 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log(form)
-
     alert("Message sent successfully!")
-
-    setForm({
-      name: '',
-      email: '',
-      message: ''
-    })
+    setForm({ name: '', email: '', message: '' })
   }
 
   return (
-    <div className="bg-gray-50 min-h-screen mb-5 ">
+    <div style={{ background: 'var(--bg)', color: 'var(--text)' }} className="min-h-screen mb-5">
 
       {/* HERO */}
-      <div className="bg-gradient-to-r from-indigo-600 to-blue-500 text-white py-20 text-center shadow-lg">
-        <h1 className="text-4xl md:text-5xl font-bold">Contact Us</h1>
-        <p className="mt-4 text-lg opacity-90">We’d love to hear from you</p>
+      <div className="bg-gradient-to-r from-indigo-600 to-blue-500 text-white py-16 md:py-20 text-center shadow-lg px-4">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold">Contact Us</h1>
+        <p className="mt-4 text-base sm:text-lg opacity-90">We'd love to hear from you</p>
       </div>
 
       {/* MAIN SECTION */}
-      <div className="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-12">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 md:py-16 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
 
         {/* FORM */}
-        <form 
-          onSubmit={handleSubmit} 
-          className="bg-white/80 backdrop-blur-lg p-8 rounded-2xl shadow-xl border border-gray-200"
+        <form
+          onSubmit={handleSubmit}
+          className="p-6 sm:p-8 rounded-2xl shadow-xl border"
+          style={{ background: 'var(--card)', borderColor: 'var(--border)' }}
         >
-          <h2 className="text-2xl font-bold mb-6 text-gray-800">Send Message</h2>
+          <h2 className="text-xl sm:text-2xl font-bold mb-6" style={{ color: 'var(--text)' }}>Send Message</h2>
 
           <input
             type="text"
@@ -53,7 +48,12 @@ const Contact = () => {
             value={form.name}
             onChange={handleChange}
             placeholder="Your Name"
-            className="w-full mb-4 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+            className="w-full mb-4 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition border"
+            style={{
+              background: 'var(--input-bg)',
+              color: 'var(--text)',
+              borderColor: 'var(--input-border)'
+            }}
             required
           />
 
@@ -63,7 +63,12 @@ const Contact = () => {
             value={form.email}
             onChange={handleChange}
             placeholder="Your Email"
-            className="w-full mb-4 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+            className="w-full mb-4 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition border"
+            style={{
+              background: 'var(--input-bg)',
+              color: 'var(--text)',
+              borderColor: 'var(--input-border)'
+            }}
             required
           />
 
@@ -73,7 +78,12 @@ const Contact = () => {
             onChange={handleChange}
             placeholder="Your Message"
             rows="5"
-            className="w-full mb-6 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+            className="w-full mb-6 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition border"
+            style={{
+              background: 'var(--input-bg)',
+              color: 'var(--text)',
+              borderColor: 'var(--input-border)'
+            }}
             required
           ></textarea>
 
@@ -83,14 +93,15 @@ const Contact = () => {
         </form>
 
         {/* CONTACT INFO */}
-        <div className="flex flex-col justify-center bg-white p-8 rounded-2xl shadow-xl border border-gray-200">
-          <h2 className="text-2xl font-bold mb-6 text-gray-800">Get in Touch</h2>
+        <div className="flex flex-col justify-center p-6 sm:p-8 rounded-2xl shadow-xl border"
+             style={{ background: 'var(--card)', borderColor: 'var(--border)' }}>
+          <h2 className="text-xl sm:text-2xl font-bold mb-6" style={{ color: 'var(--text)' }}>Get in Touch</h2>
 
-          <p className="text-gray-600 mb-6">
+          <p className="mb-6" style={{ color: 'var(--text-muted)' }}>
             Have questions? Our team is available 24/7 to assist you.
           </p>
 
-          <div className="space-y-5 text-gray-700 text-lg">
+          <div className="space-y-5 text-lg" style={{ color: 'var(--text-muted)' }}>
             <p className="flex items-center gap-3">
               📍 <span>Kalol, Gujarat, India</span>
             </p>
@@ -106,12 +117,13 @@ const Contact = () => {
       </div>
 
       {/* MAP */}
-      <div className="w-full h-[400px] px-6 pb-16">
-        <div className="rounded-2xl overflow-hidden shadow-lg border">
+      <div className="w-full px-4 sm:px-6 pb-12 md:pb-16">
+        <div className="rounded-2xl overflow-hidden shadow-lg border" style={{ borderColor: 'var(--border)' }}>
           <iframe
             title="map"
             src="https://maps.google.com/maps?q=kalol%20gujarat&t=&z=13&ie=UTF8&iwloc=&output=embed"
-            className="w-full h-[400px] border-0"
+            className="w-full border-0"
+            style={{ height: '350px' }}
             allowFullScreen=""
             loading="lazy"
           ></iframe>

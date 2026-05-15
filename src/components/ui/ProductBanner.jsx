@@ -9,35 +9,35 @@ import { EffectCoverflow, Pagination, Autoplay } from 'swiper/modules';
 const banners = [
   {
     id: 1,
-    img: "https://images.unsplash.com/photo-1498049794561-7780e7231661?w=600&q=80",
+    img: "https://images.unsplash.com/photo-1498049794561-7780e7231661?w=600&q=80&auto=format&fit=crop",
     label: "Electronics",
     tag: "Up to 40% Off",
     link: "/category/smartphones"
   },
   {
     id: 2,
-    img: "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&q=80",
+    img: "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&q=80&auto=format&fit=crop",
     label: "Fashion",
     tag: "New Arrivals",
     link: "/category/womens-dresses"
   },
   {
     id: 3,
-    img: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80",
+    img: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80&auto=format&fit=crop",
     label: "Furniture",
     tag: "Best Deals",
     link: "/category/furniture"
   },
   {
     id: 4,
-    img: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80",
+    img: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&q=80&auto=format&fit=crop",
     label: "Cameras",
     tag: "Top Rated",
     link: "/category/laptops"
   },
   {
     id: 5,
-    img: "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=600&q=80",
+    img: "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=600&q=80&auto=format&fit=crop",
     label: "Skincare",
     tag: "Trending Now",
     link: "/category/skin-care"
@@ -92,6 +92,8 @@ const ProductBanner = () => {
               {/* Image */}
               <img
                 src={item.img}
+                loading="lazy"
+                decoding="async"
                 className="w-full h-40 sm:h-48 md:h-56 lg:h-64 object-cover transition-transform duration-500 group-hover:scale-105"
                 alt={item.label}
               />

@@ -12,21 +12,15 @@ import { useSelector } from 'react-redux'
 const ProductPage = () => {
 
   const products = useSelector((state) => state.products.products)
-
   const { loading, error } = useAllProduct()
-  const { currentPage,
-    setCurrentPage,
-    currentData,
-    hasNextPage } = usePagination(products, 10)
-
+  const { currentPage, setCurrentPage, currentData, hasNextPage } = usePagination(products, 10)
 
   if (loading && products.length === 0)
     return <SkeletonGrid count={8} Component={ProductSkeleton} />;
   if (error) return <ErrorState message={error} />;
 
-
   return (
-    <div className="space-y-6">
+    <div className="min-h-screen py-4" style={{ background: 'var(--bg)' }}>
 
       <FilterBar />
 
@@ -36,37 +30,36 @@ const ProductPage = () => {
           subtitle="Please check back later"
         />
       ) : (
-        <>
-          <div className="min-h-[300px] flex flex-col items-center justify-center">
+        <div className="px-3 sm:px-4 mt-4">
 
-            {currentData.length > 0 ? (
-              <div className="flex flex-wrap gap-10 justify-center">
-                {currentData.map((elem) => (
-                  <ProductCard key={elem.id} product={elem} />
-                ))}
-              </div>
-            ) : (
-              <div className="text-center">
-                <h2 className="text-xl font-semibold" style={{ color: 'var(--text-muted)' }}>
-                  No Products Found 😕
-                </h2>
-                <p className="mt-2 text-sm" style={{ color: 'var(--text-subtle)' }}>
-                  Try adjusting filters or search again
-                </p>
-              </div>
-            )}
-
-          </div>
-
+          {currentData.length > 0 ? (
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4">
+              {currentData.map((elem) => (
+                <ProductCard key={elem.id} product={elem} />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-16">
+              <h2 className="text-xl font-semibold" style={{ color: 'var(--text-muted)' }}>
+                No Products Found 😕
+              </h2>
+              <p className="mt-2 text-sm" style={{ color: 'var(--text-subtle)' }}>
+                Try adjusting filters or search again
+              </p>
+            </div>
+          )}
 
           {currentData.length > 0 && (
-            <Pagination
-              currentPage={currentPage}
-              onPageChange={setCurrentPage}
-              hasNextPage={hasNextPage}
-            />
+            <div className="mt-6">
+              <Pagination
+                currentPage={currentPage}
+                onPageChange={setCurrentPage}
+                hasNextPage={hasNextPage}
+              />
+            </div>
           )}
-        </>
+
+        </div>
       )}
 
     </div>

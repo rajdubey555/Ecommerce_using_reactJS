@@ -24,6 +24,7 @@ const Category = () => {
         setCurrentPage,
         currentData,
         hasNextPage } = usePagination(categoriesProduct, 10)
+
     const handleAddToCart = (product) => {
         dispatch(addToCart(product));
         showSuccess(
@@ -36,13 +37,16 @@ const Category = () => {
     if (!categoriesProduct.length) return (<EmptyState title="No Products Found" subtitle="Try changing category or filters" />);
 
     return (
-        <div className='mt-5 mb-5 w-full'>
-            <div className='flex  justify-center'>
-                <h1 className='text-2xl font-bold px-5 items-center' style={{color: 'var(--text)'}}>{name.charAt(0).toUpperCase() + name.slice(1)}</h1>
-            </div>
-            <div
-                className=" mt-1 pl-4 flex flex-wrap gap-10 justify-center w-full"
-            >
+        <div className="min-h-screen py-6 px-3 sm:px-4" style={{ background: 'var(--bg)' }}>
+
+            {/* Category Title */}
+            <h1 className="text-xl sm:text-2xl font-bold text-center mb-5"
+                style={{ color: 'var(--text)' }}>
+                {name.charAt(0).toUpperCase() + name.slice(1)}
+            </h1>
+
+            {/* Product Grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4">
                 {currentData.map((elem) => (
                     <ProductCard
                         key={elem.id}
@@ -51,12 +55,17 @@ const Category = () => {
                     />
                 ))}
             </div>
-            <div>
-                <Pagination currentPage={currentPage}
+
+            {/* Pagination */}
+            <div className="mt-6">
+                <Pagination
+                    currentPage={currentPage}
                     onPageChange={setCurrentPage}
-                    hasNextPage={hasNextPage} />
+                    hasNextPage={hasNextPage}
+                />
             </div>
-        </div >
+
+        </div>
     )
 }
 

@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { FaHeart } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 
 // Components
 import ProductCard from '../components/ui/ProductCard'
@@ -31,42 +33,42 @@ const Wishlist = () => {
                 images: item.images,
                 discountPercentage: item.discountPercentage
             }))
-
             localStorage.setItem("wishlist", JSON.stringify(safeWishlist))
-
         } catch (error) {
             console.error("Error Saving Wishlist : ", error)
         }
     }, [wishListItems])
 
     return (
-        <div className="mt-5 mb-5">
+        <div className="min-h-screen py-6 px-3 sm:px-4" style={{ background: 'var(--bg)' }}>
 
             {/* 🔤 Heading */}
-            <h1 className="text-xl sm:text-2xl font-bold text-center text-gray-700 mb-4">
+            <h1 className="text-xl sm:text-2xl font-bold text-center mb-6" style={{ color: 'var(--text)' }}>
                 My Wishlist
             </h1>
 
             {/* 📭 Empty State */}
             {wishListItems.length === 0 ? (
-                <div className="text-center text-gray-500 mt-10">
-                    Your wishlist is empty 😢
+                <div className="flex flex-col items-center justify-center gap-4 mt-16">
+                    <FaHeart className="text-7xl text-red-300" />
+                    <p className="text-lg font-semibold" style={{ color: 'var(--text-muted)' }}>
+                        Your wishlist is empty 😢
+                    </p>
+                    <Link to="/products">
+                        <button
+                            className="px-6 py-2.5 rounded-xl font-semibold text-white hover:opacity-90 transition"
+                            style={{ background: 'var(--primary)' }}
+                        >
+                            Browse Products
+                        </button>
+                    </Link>
                 </div>
             ) : (
                 <>
                     {/* 🧱 GRID */}
-                    <div className="
-                        px-3
-                        grid
-                        grid-cols-2
-                        sm:grid-cols-2
-                        md:grid-cols-3
-                        lg:grid-cols-4
-                        xl:grid-cols-5
-                        gap-4
-                    ">
+                    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4">
                         {currentData.map((elem) => (
-                            <ProductCard className="h-120"
+                            <ProductCard
                                 key={elem.id}
                                 product={elem}
                             />

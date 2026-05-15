@@ -55,27 +55,15 @@ const SearchPage = () => {
     }
 
     return (
-        <div className="mt-5 mb-5">
+        <div className="min-h-screen py-6 px-3 sm:px-4" style={{ background: 'var(--bg)' }}>
 
             {/* 🔤 Heading */}
-            <div className="flex justify-center px-3">
-                <h1 className="text-xl sm:text-2xl font-bold text-gray-700 text-center">
-                    Results for "{query}"
-                </h1>
-            </div>
+            <h1 className="text-xl sm:text-2xl font-bold text-center mb-5" style={{ color: 'var(--text)' }}>
+                Results for "{query}"
+            </h1>
 
             {/* 🧱 PRODUCT GRID */}
-            <div className="
-                mt-4 
-                px-3 
-                grid 
-                grid-cols-2 
-                sm:grid-cols-2 
-                md:grid-cols-3 
-                lg:grid-cols-4 
-                xl:grid-cols-5 
-                gap-4
-            ">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4">
                 {currentData.map((elem) => (
                     <ProductCard
                         key={elem.id}

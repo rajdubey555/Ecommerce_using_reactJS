@@ -10,7 +10,6 @@ const PlaceOrderButton = ({ cartItems, shippingInfo, paymentMethod }) => {
 
   const handlePlaceOrder = async () => {
 
-    // ✅ VALIDATION
     if (!cartItems || cartItems.length === 0) {
       alert("Cart is empty");
       return;
@@ -29,9 +28,8 @@ const PlaceOrderButton = ({ cartItems, shippingInfo, paymentMethod }) => {
     try {
       setLoading(true);
 
-      // ✅ CREATE ORDER DATA
       const orderData = {
-        id: Date.now(), // unique id
+        id: Date.now(),
         items: cartItems,
         shipping: shippingInfo,
         paymentMethod,
@@ -44,19 +42,13 @@ const PlaceOrderButton = ({ cartItems, shippingInfo, paymentMethod }) => {
 
       console.log("Order Saved:", orderData);
 
-      // ✅ SAVE IN LOCAL STORAGE
-      const existingOrders =
-        JSON.parse(localStorage.getItem("orders")) || [];
-
+      const existingOrders = JSON.parse(localStorage.getItem("orders")) || [];
       existingOrders.push(orderData);
-
       localStorage.setItem("orders", JSON.stringify(existingOrders));
 
-      // ✅ CLEAR CART
       localStorage.removeItem("cart");
       dispatch(removeCart());
 
-      // ✅ REDIRECT
       navigate(`/order-success/${orderData.id}`);
 
     } catch (error) {
@@ -71,13 +63,14 @@ const PlaceOrderButton = ({ cartItems, shippingInfo, paymentMethod }) => {
     <button
       onClick={handlePlaceOrder}
       disabled={loading}
-      className={`w-full py-3 rounded-xl text-white font-semibold transition duration-300 ${
-        loading
-          ? "bg-gray-400 cursor-not-allowed"
-          : "bg-green-600 hover:bg-green-700"
-      }`}
+      className="w-full py-3 rounded-xl text-white font-semibold transition duration-300"
+      style={{
+        background: loading ? 'var(--border-strong)' : '#16a34a',
+        cursor: loading ? 'not-allowed' : 'pointer',
+        opacity: loading ? 0.7 : 1,
+      }}
     >
-      {loading ? "Placing Order..." : "Place Order"}
+      {loading ? "Placing Order..." : "🛒 Place Order"}
     </button>
   );
 };
