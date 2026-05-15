@@ -36,7 +36,7 @@ const Navbar2 = () => {
         <span className="hidden md:inline">Contact</span>
       </Link> */}
 
-      <span className="hidden md:inline">|</span>
+      {/* <span className="hidden md:inline">|</span> */}
 
       {/* Cart */}
       <div className="relative">
