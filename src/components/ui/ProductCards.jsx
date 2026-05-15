@@ -28,29 +28,29 @@ const ProductCards = () => {
     return (
         <div className=' mb-5 px-4'>
 
-            <div className='flex justify-between items-center px-2 md:px-5 mb-4'>
-                <h1 className='text-2xl font-bold' style={{color: 'var(--text)'}}>Top Products</h1>
+            <div className='flex justify-between items-center px-1 md:px-5 mb-4'>
+                <h1 className='text-2xl font-bold' style={{ color: 'var(--text)' }}>Top Products</h1>
                 <Link to="/products">
                     <button
                         className='h-10 text-lg hover:text-[var(--primary)] hover:scale-105 transition-all font-medium'
-                        style={{color: 'var(--text-muted)'}}
+                        style={{ color: 'var(--text-muted)' }}
                         type='button'
                     >
                         View all
                     </button>
                 </Link>
             </div>
-            <div className='w-full relative px-2 md:px-8'>
+            <div className='w-full relative px-2'>
                 {/* Left Button */}
                 <button className="prev-btn absolute left-0 md:-left-2 top-1/2 z-10 -translate-y-1/2 shadow-lg border rounded-full w-10 h-10 hidden md:flex items-center justify-center hover:scale-110 transition"
-                        style={{background: 'var(--card)', borderColor: 'var(--border)'}}>
-                    <FaChevronLeft style={{color: 'var(--text-muted)'}} />
+                    style={{ background: 'var(--card)', borderColor: 'var(--border)' }}>
+                    <FaChevronLeft style={{ color: 'var(--text-muted)' }} />
                 </button>
 
                 {/* Right Button */}
                 <button className="next-btn absolute right-0 md:-right-2 top-1/2 z-10 -translate-y-1/2 shadow-lg border rounded-full w-10 h-10 hidden md:flex items-center justify-center hover:scale-110 transition"
-                        style={{background: 'var(--card)', borderColor: 'var(--border)'}}>
-                    <FaChevronRight style={{color: 'var(--text-muted)'}} />
+                    style={{ background: 'var(--card)', borderColor: 'var(--border)' }}>
+                    <FaChevronRight style={{ color: 'var(--text-muted)' }} />
                 </button>
 
 
@@ -84,9 +84,7 @@ const ProductCards = () => {
                 >
 
                     {products?.map((elem) => (
-                        <SwiperSlide className='mb-7 flex justify-center items-center' key={elem.id}>
-
-
+                        <SwiperSlide className='mb-7 h-30 flex justify-center items-center' key={elem.id}>
                             <ProductCard product={elem} />
 
                         </SwiperSlide>

@@ -38,9 +38,9 @@ const ProductCard = ({ product, onAddToCart, ontoggleWishlist }) => {
   return (
     <div className="bg-[var(--card)] border border-[var(--border)] 
                     w-full rounded-2xl shadow-sm 
-                    hover:shadow-lg hover:scale-105 
+                    hover:shadow-lg hover:scale-95 
                     transition duration-300 relative
-                    flex flex-col pb-3">
+                    flex flex-col pb-3 h-60">
 
       {/* Discount Badge */}
       <div className="absolute top-0 left-0 
@@ -57,10 +57,10 @@ const ProductCard = ({ product, onAddToCart, ontoggleWishlist }) => {
                       rounded-full hover:text-red-600 z-10 cursor-pointer">
         {<FaHeart color={isWishlisted ? "red" : "black"} />}
       </div>
-      
+
       <Link to={`/product/${product.id}`}>
         {/* Image */}
-        <div className="h-36 p-3">
+        <div className="h-40 p-3">
           <img
             className="w-full h-full object-contain"
             src={product?.images?.[0]}
