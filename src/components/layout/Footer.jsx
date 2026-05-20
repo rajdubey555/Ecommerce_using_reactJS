@@ -7,7 +7,7 @@ import dowAppStore from "../../assets/button/dowAppStore.png";
 
 const Footer = () => {
   return (
-<div className="bg-[var(--footer-bg)] text-[var(--footer-text)] w-full">
+    <div className="bg-[var(--footer-bg)] text-[var(--footer-text)] w-full">
       <div className="flex flex-wrap py-6">
 
         {/* LEFT */}
@@ -99,7 +99,7 @@ const Footer = () => {
 
       {/* BOTTOM */}
       <div className="border-t border-[var(--footer-text)] py-3 text-center text-sm font-medium text-[var(--footer-text)]">
-        © 2026 All rights reserved. Raj Coder.
+        © 2026 All rights reserved. Raj Mart.
       </div>
 
     </div>

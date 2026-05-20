@@ -8,7 +8,7 @@ const Navbar = () => {
     <div className="flex flex-col md:flex-row gap-4 px-4 md:px-8 py-3 bg-[var(--card)] border-b border-[var(--border)] justify-between items-center">
 
       <h2 className="text-3xl font-bold text-[var(--primary)] text-center md:text-left">
-        Raj Coder
+        Raj Mart
       </h2>
 
       <SearchBox />
